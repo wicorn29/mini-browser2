@@ -40,7 +40,6 @@
   <h1>Welcome to Your "Browser"!</h1>
   <p>This is a simplified example of a browser interface.</p>
 </div>
-
 <script>
 const addressBar = document.getElementById('address-bar');
 const goButton = document.getElementById('go-button');
@@ -49,7 +48,8 @@ const contentDiv = document.getElementById('content');
 goButton.addEventListener('click', () => {
   const url = addressBar.value;
   if (url.startsWith('http://') || url.startsWith('https://')) {
-    fetch(url)
+    const proxyUrl = `proxy.php?url=${encodeURIComponent(url)}`;
+    fetch(proxyUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
